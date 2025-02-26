@@ -25,24 +25,34 @@ exports.getTodos = async (req, res) => {
   }
 };
 
-exports.completeTodo = async (req, res) => {
-  const { id } = req.params;
-
+exports.editTodo=async (req,res)=>{
+  const { id,task } = req.body;
   try {
-    const todo = await Todo.findOneAndUpdate({_id:id,user:req.userID}, { completed: true });
+    const todo = await Todo.findOneAndUpdate({ _id: id,user:req.userId },{
+      task:task
+    });
     res.json(todo);
+  } catch (error) {
+    res.status(500).json({ message: 'Error getting tasks', error });
+  }
+}
+
+exports.completeTodo = async (req, res) => {
+  const { id,completed } = req.body;
+  try {
+    const todo = await Todo.findOneAndUpdate({_id:id,user:req.userId}, { completed: completed });
   } catch (error) {
     res.status(500).json({ message: 'Error completing task', error });
   }
 };
 
 exports.deleteTodo = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.query;
 
   try {
     await Todo.findOneAndDelete({_id:id,user:req.userId});
-    res.json({ message: 'Tarea eliminada' });
+    res.json({ message: 'Task deleted' });
   } catch (error) {
-    res.status(500).json({ message: 'Error al eliminar tarea', error });
+    res.status(500).json({ message: 'Error deleting task', error });
   }
 };

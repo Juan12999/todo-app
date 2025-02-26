@@ -29,31 +29,6 @@ const TodoList = () => {
     }
   }
 
-  const handleComplete = (id: string) => {
-    // axios.put(`http://localhost:5000/api/todos/${id}/complete`, {}, {
-    //   headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    // })
-    // .then(() => {
-    //   setTodos(todos.map(todo => todo._id === id ? { ...todo, completed: true } : todo));
-    // })
-    // .catch(error => {
-    //   console.error('Hubo un error al completar la tarea:', error);
-    // });
-  };
-
-  const handleDelete = (id: string) => {
-    // axios.delete(`http://localhost:5000/api/todos/${id}`, {
-    //   headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    // })
-    // .then(() => {
-    //   setTodos(todos.filter(todo => todo._id !== id));
-    // })
-    // .catch(error => {
-    //   console.error('Hubo un error al eliminar la tarea:', error);
-    // });
-  };
-
-
   return (
     <div>
       <div>
@@ -64,14 +39,16 @@ const TodoList = () => {
           <ErrorAlert message={error} />
         </div>}
         <h1>My Tasks</h1>
+        <div className='bg-gray-200 p-5 rounded-lg'>
         {todos.map(todo => (
           <TodoItem
-            key={todo.id}
-            todo={todo}
-            onComplete={()=>loadData()}
-            onDelete={()=>loadData()}
+          key={todo._id}
+          todo={todo}
+          onComplete={()=>loadData()}
+          onDelete={()=>loadData()}
           />
         ))}
+        </div>
       </div>
     </div>
   );

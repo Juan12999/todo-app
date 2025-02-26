@@ -7,4 +7,15 @@ const api = axios.create({
   },
 });
 
+api.interceptors.response.use((res)=>{console.log("res:",res)
+  
+
+  return res;
+},(error)=>{
+  if(error.status===401){
+    localStorage.setItem("session-data","")
+    window.location.assign("/login")
+  }
+})
+
 export default api;

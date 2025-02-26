@@ -2,7 +2,6 @@ import { useNavigate, Link } from 'react-router';
 import useAuthStore, { AuthStore } from '../store';
 import { useEffect } from 'react';
 import TodoList from '../components/TodoList';
-import CreateTodo from '../components/CreateTodo';
 
 const Todos = () => {
     const store: AuthStore = useAuthStore()
