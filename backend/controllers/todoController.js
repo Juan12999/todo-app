@@ -10,7 +10,7 @@ exports.createTodo = async (req, res) => {
     });
 
     await todo.save();
-    res.status(201).json(todo);
+    res.status(201).send("ok");
   } catch (error) {
     res.status(500).json({ message: 'Error creating task', error });
   }
@@ -31,7 +31,7 @@ exports.editTodo=async (req,res)=>{
     const todo = await Todo.findOneAndUpdate({ _id: id,user:req.userId },{
       task:task
     });
-    res.json(todo);
+    res.send("ok");
   } catch (error) {
     res.status(500).json({ message: 'Error getting tasks', error });
   }
@@ -41,6 +41,7 @@ exports.completeTodo = async (req, res) => {
   const { id,completed } = req.body;
   try {
     const todo = await Todo.findOneAndUpdate({_id:id,user:req.userId}, { completed: completed });
+    res.send("ok")
   } catch (error) {
     res.status(500).json({ message: 'Error completing task', error });
   }
@@ -51,7 +52,7 @@ exports.deleteTodo = async (req, res) => {
 
   try {
     await Todo.findOneAndDelete({_id:id,user:req.userId});
-    res.json({ message: 'Task deleted' });
+    res.send("ok");
   } catch (error) {
     res.status(500).json({ message: 'Error deleting task', error });
   }

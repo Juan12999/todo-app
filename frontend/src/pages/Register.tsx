@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import axios, { AxiosError } from 'axios';
-import { Link, Navigate, useNavigate } from 'react-router';
+import { useState } from 'react';
+import axios from 'axios';
+import { Link, Navigate } from 'react-router';
 import useAuthStore, { AuthStore } from '../store';
 import ErrorAlert from '../components/ErrorAlert';
 import Spinner from '../components/Spinner';
 
 const Register = () => {
   const store: AuthStore = useAuthStore()
-  const navigate = useNavigate();
   if (store.token !== "") {
     return <Navigate to="/todos" />;
   }
@@ -28,7 +27,7 @@ const Register = () => {
       setLoading(true)
       const res = await axios.post('http://localhost:5000/api/auth/register', { name, email, password })
       store.login(res.data.token, name, email)
-      navigate("/todos")
+      window.location.assign("/todos")
     } catch (e) {
       if (axios.isAxiosError(e) && e.response) {
         setError(e.response.data.message)

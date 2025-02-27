@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { Link, Navigate, useNavigate } from 'react-router';
+import { Link, Navigate } from 'react-router';
 import useAuthStore, { AuthStore } from '../store';
 import ErrorAlert from '../components/ErrorAlert';
 import Spinner from '../components/Spinner';
@@ -17,7 +17,6 @@ const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();

@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router';
+import { useNavigate } from 'react-router';
 import useAuthStore, { AuthStore } from '../store';
 import { useEffect } from 'react';
 import TodoList from '../components/TodoList';
@@ -16,7 +16,7 @@ const Todos = () => {
     const handleLogout = (e: any) => {
         e.preventDefault()
         store.logout()
-        navigate("/login")
+        window.location.assign("/login")
     }
 
 
@@ -34,7 +34,7 @@ const Todos = () => {
                 </div>
             </div>
         </div>
-        <div className='m-auto w-full max-w-[1024px] '>
+        <div className='m-auto w-full max-w-[1024px] px-4'>
             <TodoList />
         </div>
 

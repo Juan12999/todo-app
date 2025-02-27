@@ -24,6 +24,7 @@ const CreateTodo: React.FC<Props> = ({ onCreateTodo }) => {
             await api.post("/todos", {
                 task
             })
+            setTask("")
             onCreateTodo()
         } catch (e: any) {
             if (axios.isAxiosError(e) && e.response) {
@@ -31,6 +32,8 @@ const CreateTodo: React.FC<Props> = ({ onCreateTodo }) => {
             } else if (e instanceof Error) {
                 setError(e.message)
             }
+            
+        }finally{
             setTimeout(() => { setError("") }, 7000)
         }
         setLoading(false)

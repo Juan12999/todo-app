@@ -40,6 +40,6 @@ exports.loginUser = async (req, res) => {
 
     res.json({ token,name:user.name,email:user.email });
   } catch (error) {
-    res.status(500).json({ message: 'Error al iniciar sesión', error });
+    res.status(500).json({ message: 'Error logging in', error });
   }
 };
