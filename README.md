@@ -84,7 +84,7 @@ This Todo application is divided into two parts:
 
 4. Start the backend server:
    ```bash
-   npm run dev
+   node server
    ```
 
    This will run the backend API on `http://localhost:5000`.
